@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>ChemVerse - Chemistry World</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <style>
+
+        body {
+            background-color: #10172a;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #172554;
+            padding: 25px 10px;
+        }
+
+        h1 {
+            color: #00e5ff;
+        }
+
+        h2 {
+            color: #ffd166;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+        }
+
+        .active {
+            display: block;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border: 2px solid #00e5ff;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px auto;
+            width: 85%;
+            max-width: 650px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #00bcd4;
+            color: #10172a;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffd166;
+        }
+
+        .element {
+            display: inline-block;
+            width: 125px;
+            min-height: 125px;
+            box-sizing: border-box;
+            background-color: #164e63;
+            border: 2px solid #00e5ff;
+            border-radius: 12px;
+            padding: 10px;
+            margin: 7px;
+            vertical-align: top;
+        }
+
+        .element h1 {
+            margin: 5px;
+            font-size: 32px;
+        }
+
+        .element p {
+            margin: 5px;
+        }
+
+        .hydrogen {
+            border-color: #60a5fa;
+        }
+
+        .carbon {
+            border-color: #94a3b8;
+        }
+
+        .oxygen {
+            border-color: #f87171;
+        }
+
+        .sodium {
+            border-color: #fb923c;
+        }
+
+        .magnesium {
+            border-color: #4ade80;
+        }
+
+        .aluminium {
+            border-color: #c084fc;
+        }
+
+        .chlorine {
+            border-color: #facc15;
+        }
+
+        .iron {
+            border-color: #f97316;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #00e5ff;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #164e63;
+        }
+
+        .table-box {
+            max-width: 750px;
+            margin: auto;
+            overflow-x: auto;
+        }
+
+        input, select {
+            padding: 12px;
+            margin: 8px;
+            max-width: 90%;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .constant {
+            color: #00e5ff;
+            font-size: 20px;
+            overflow-wrap: anywhere;
+        }
+
+        .molecule {
+            background-color: #172554;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 650px;
+        }
+
+        .atom {
+            display: inline-flex;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            box-sizing: border-box;
+            border: 2px solid white;
+            vertical-align: middle;
+        }
+
+        .atom-h {
+            background-color: #2563eb;
+        }
+
+        .atom-c {
+            background-color: #475569;
+        }
+
+        .atom-o {
+            background-color: #dc2626;
+        }
+
+        .atom-p {
+            background-color: #ea580c;
+        }
+
+        .atom-cl {
+            background-color: #16a34a;
+        }
+
+        .bond {
+            display: inline-block;
+            width: 35px;
+            height: 4px;
+            background-color: #ffd166;
+            vertical-align: middle;
+        }
+
+        .double-bond {
+            display: inline-block;
+            width: 35px;
+            height: 10px;
+            border-top: 3px solid #ffd166;
+            border-bottom: 3px solid #ffd166;
+            box-sizing: border-box;
+            vertical-align: middle;
+        }
+
+        .pcl-bond {
+            display: inline-block;
+            width: 45px;
+            height: 3px;
+            background-color: #ffd166;
+            vertical-align: middle;
+        }
+
+        footer {
+            background-color: #172554;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- WEBSITE HEADER -->
+
+    <div class="header">
+
+        <h1>ChemVerse</h1>
+
+        <h3>The World of Chemistry</h3>
+
+        <p>
+            <em>Explore Elements, Constants and Chemical Bonds</em>
+        </p>
+
+        <hr>
+
+        <p>
+            Welcome to ChemVerse!
+            Discover the colorful world of Chemistry.
+        </p>
+
+    </div>
+
+
+    <!-- HOME PAGE -->
+
+    <div id="home" class="page active">
+
+        <h2>Explore Chemistry</h2>
+
+        <p>Select your desired section.</p>
+
+
+        <div class="card">
+
+            <h2>01. Periodic Table Explorer</h2>
+
+            <p>
+                Discover eight important chemical elements.
+            </p>
+
+            <button onclick="showPage('periodic')">
+                Explore Elements
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>02. Chemistry Calculator</h2>
+
+            <p>
+                Explore Avogadro's Constant,
+                Planck's Constant and Mole Calculations.
+            </p>
+
+            <button onclick="showPage('calculator')">
+                Open Calculator
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>03. Molecular Bond Visualizer</h2>
+
+            <p>
+                Explore H2O, CO2 and PCl5.
+            </p>
+
+            <button onclick="showPage('molecule')">
+                Explore Molecules
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- PERIODIC TABLE -->
+
+    <div id="periodic" class="page">
+
+        <h1>Periodic Table Explorer</h1>
+
+        <p>
+            Explore the properties of selected elements.
+        </p>
+
+
+        <div class="element hydrogen">
+
+            <p>1</p>
+
+            <h1>H</h1>
+
+            <p>Hydrogen</p>
+
+            <small>1.008 u</small>
+
+        </div>
+
+
+        <div class="element carbon">
+
+            <p>6</p>
+
+            <h1>C</h1>
+
+            <p>Carbon</p>
+
+            <small>12.011 u</small>
+
+        </div>
+
+
+        <div class="element oxygen">
+
+            <p>8</p>
+
+            <h1>O</h1>
+
+            <p>Oxygen</p>
+
+            <small>15.999 u</small>
+
+        </div>
+
+
+        <div class="element sodium">
+
+            <p>11</p>
+
+            <h1>Na</h1>
+
+            <p>Sodium</p>
+
+            <small>22.990 u</small>
+
+        </div>
+
+
+        <div class="element magnesium">
+
+            <p>12</p>
+
+            <h1>Mg</h1>
+
+            <p>Magnesium</p>
+
+            <small>24.305 u</small>
+
+        </div>
+
+
+        <div class="element aluminium">
+
+            <p>13</p>
+
+            <h1>Al</h1>
+
+            <p>Aluminium</p>
+
+            <small>26.982 u</small>
+
+        </div>
+
+
+        <div class="element chlorine">
+
+            <p>17</p>
+
+            <h1>Cl</h1>
+
+            <p>Chlorine</p>
+
+            <small>35.45 u</small>
+
+        </div>
+
+
+        <div class="element iron">
+
+            <p>26</p>
+
+            <h1>Fe</h1>
+
+            <p>Iron</p>
+
+            <small>55.845 u</small>
+
+        </div>
+
+
+        <h2>Element Information Table</h2>
+
+        <div class="table-box">
+
+            <table>
+
+                <caption>
+                    <h3>Selected Chemical Elements</h3>
+                </caption>
+
+                <tr>
+                    <th>Element</th>
+                    <th>Symbol</th>
+                    <th>Atomic Number</th>
+                    <th>Atomic Mass</th>
+                </tr>
+
+                <tr>
+                    <td>Hydrogen</td>
+                    <td>H</td>
+                    <td>1</td>
+                    <td>1.008 u</td>
+                </tr>
+
+                <tr>
+                    <td>Carbon</td>
+                    <td>C</td>
+                    <td>6</td>
+                    <td>12.011 u</td>
+                </tr>
+
+                <tr>
+                    <td>Oxygen</td>
+                    <td>O</td>
+                    <td>8</td>
+                    <td>15.999 u</td>
+                </tr>
+
+                <tr>
+                    <td>Sodium</td>
+                    <td>Na</td>
+                    <td>11</td>
+                    <td>22.990 u</td>
+                </tr>
+
+                <tr>
+                    <td>Magnesium</td>
+                    <td>Mg</td>
+                    <td>12</td>
+                    <td>24.305 u</td>
+                </tr>
+
+                <tr>
+                    <td>Aluminium</td>
+                    <td>Al</td>
+                    <td>13</td>
+                    <td>26.982 u</td>
+                </tr>
+
+                <tr>
+                    <td>Chlorine</td>
+                    <td>Cl</td>
+                    <td>17</td>
+                    <td>35.45 u</td>
+                </tr>
+
+                <tr>
+                    <td>Iron</td>
+                    <td>Fe</td>
+                    <td>26</td>
+                    <td>55.845 u</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button onclick="showPage('home')">
+            Back to Home
+        </button>
+
+    </div>
+
+
+    <!-- CHEMISTRY CALCULATOR -->
+
+    <div id="calculator" class="page">
+
+        <h1>Chemistry Calculator</h1>
+
+
+        <div class="card">
+
+            <h2>Avogadro's Constant</h2>
+
+            <p class="constant">
+                N<sub>A</sub> = 6.02214076 × 10<sup>23</sup>
+                mol<sup>-1</sup>
+            </p>
+
+            <p>
+                Number of particles = Number of moles
+                × Avogadro's Constant
+            </p>
+
+            <label for="moles">
+                Enter number of moles:
+            </label>
+
+            <br>
+
+            <input
+                type="number"
+                id="moles"
+                min="0"
+                step="any"
+                placeholder="Example: 2">
+
+            <br>
+
+            <button onclick="calculateParticles()">
+                Calculate Particles
+            </button>
+
+            <h3 id="particleResult">
+                Result will appear here.
+            </h3>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Planck's Constant</h2>
+
+            <p class="constant">
+                h = 6.62607015 × 10<sup>-34</sup> J s
+            </p>
+
+            <p>
+                Planck's Constant relates the energy
+                of a photon to its frequency.
+            </p>
+
+            <p>
+                Formula:
+                <strong>E = hν</strong>
+            </p>
+
+            <label for="frequency">
+                Enter frequency in Hz:
+            </label>
+
+            <br>
+
+            <input
+                type="number"
+                id="frequency"
+                min="0"
+                step="any"
+                placeholder="Example: 500000000000000">
+
+            <br>
+
+            <button onclick="calculateEnergy()">
+                Calculate Photon Energy
+            </button>
+
+            <h3 id="energyResult">
+                Result will appear here.
+            </h3>
+
+        </div>
+
+
+        <button onclick="showPage('home')">
+            Back to Home
+        </button>
+
+    </div>
+
+
+    <!-- MOLECULAR VISUALIZER -->
+
+    <div id="molecule" class="page">
+
+        <h1>Molecular Bond Visualizer</h1>
+
+        <p>
+            Colorful illustrations of three chemical compounds.
+        </p>
+
+
+        <!-- WATER -->
+
+        <div class="molecule">
+
+            <h2>Water (H<sub>2</sub>O)</h2>
+
+            <br>
+
+            <div class="atom atom-h">H</div>
+
+            <div class="bond"></div>
+
+            <div class="atom atom-o">O</div>
+
+            <div class="bond"></div>
+
+            <div class="atom atom-h">H</div>
+
+            <p>
+                Formula: H<sub>2</sub>O
+            </p>
+
+            <p>
+                One Oxygen atom and two Hydrogen atoms.
+            </p>
+
+            <p>
+                Contains two O-H single covalent bonds.
+            </p>
+
+        </div>
+
+
+        <!-- CARBON DIOXIDE -->
+
+        <div class="molecule">
+
+            <h2>Carbon Dioxide (CO<sub>2</sub>)</h2>
+
+            <br>
+
+            <div class="atom atom-o">O</div>
+
+            <div class="double-bond"></div>
+
+            <div class="atom atom-c">C</div>
+
+            <div class="double-bond"></div>
+
+            <div class="atom atom-o">O</div>
+
+            <p>
+                Formula: CO<sub>2</sub>
+            </p>
+
+            <p>
+                One Carbon atom and two Oxygen atoms.
+            </p>
+
+            <p>
+                Contains two C=O double bonds.
+            </p>
+
+        </div>
+
+
+        <!-- PHOSPHORUS PENTACHLORIDE -->
+
+        <div class="molecule">
+
+            <h2>
+                Phosphorus Pentachloride
+                (PCl<sub>5</sub>)
+            </h2>
+
+            <br>
+
+            <p>
+                <span class="atom atom-cl">Cl</span>
+                <span class="pcl-bond"></span>
+                <span class="atom atom-p">P</span>
+                <span class="pcl-bond"></span>
+                <span class="atom atom-cl">Cl</span>
+            </p>
+
+            <p>
+                <span class="atom atom-cl">Cl</span>
+                <span class="pcl-bond"></span>
+                <span class="atom atom-p">P</span>
+                <span class="pcl-bond"></span>
+                <span class="atom atom-cl">Cl</span>
+            </p>
+
+            <p>
+                <span class="atom atom-cl">Cl</span>
+            </p>
+
+            <p>
+                Formula: PCl<sub>5</sub>
+            </p>
+
+            <p>
+                One Phosphorus atom and five Chlorine atoms.
+            </p>
+
+            <p>
+                Five P-Cl bonds.
+            </p>
+
+            <p>
+                Molecular Geometry:
+                <strong>Trigonal Bipyramidal</strong>
+            </p>
+
+            <small>
+                Note: This is a simplified schematic illustration,
+                not an accurate 3D molecular model.
+            </small>
+
+        </div>
+
+
+        <button onclick="showPage('home')">
+            Back to Home
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>ChemVerse</h3>
+
+        <p>
+            Chemistry Learning Project
+        </p>
+
+        <p>
+            <em>Explore. Learn. Discover.</em>
+        </p>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function showPage(pageId) {
+
+            var pages = document.getElementsByClassName("page");
+
+            for (var i = 0; i < pages.length; i++) {
+
+                pages[i].classList.remove("active");
+
+            }
+
+            document.getElementById(pageId).classList.add("active");
+
+            window.scrollTo(0, 0);
+
+        }
+
+
+        function calculateParticles() {
+
+            var moles = Number(
+                document.getElementById("moles").value
+            );
+
+            var result = document.getElementById("particleResult");
+
+            if (
+                document.getElementById("moles").value === "" ||
+                !Number.isFinite(moles) ||
+                moles < 0
+            ) {
+
+                result.innerHTML =
+                    "Please enter a valid non-negative number of moles.";
+
+                return;
+
+            }
+
+            var NA = 6.02214076e23;
+
+            var particles = moles * NA;
+
+            result.innerHTML =
+                "Number of particles = " +
+                particles.toExponential(6);
+
+        }
+
+
+        function calculateEnergy() {
+
+            var frequencyInput =
+                document.getElementById("frequency");
+
+            var frequency = Number(frequencyInput.value);
+
+            var result = document.getElementById("energyResult");
+
+            if (
+                frequencyInput.value === "" ||
+                !Number.isFinite(frequency) ||
+                frequency < 0
+            ) {
+
+                result.innerHTML =
+                    "Please enter a valid non-negative frequency.";
+
+                return;
+
+            }
+
+            var h = 6.62607015e-34;
+
+            var energy = h * frequency;
+
+            result.innerHTML =
+                "Photon Energy = " +
+                energy.toExponential(6) +
+                " J";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
